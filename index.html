@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Grade 1 Math Magic! - Ultra-Cute E-Learning ✨</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka & Quicksand -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for cute icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        quicksand: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        pastelPink: '#FFD1DC',
+                        pastelBlue: '#C1F0F6',
+                        pastelYellow: '#FFF5BA',
+                        pastelGreen: '#D8F3DC',
+                        pastelPurple: '#E8D7F1',
+                        cuteCoral: '#FF8FAB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #eff6ff 50%, #fefce8 100%);
+            background-attachment: fixed;
+            user-select: none;
+            overflow-x: hidden;
+        }
+        /* Floating Clouds Background */
+        .cloud-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50px;
+            animation: drift linear infinite;
+        }
+        @keyframes drift {
+            0% { transform: translateX(-150px); }
+            100% { transform: translateX(calc(100vw + 150px)); }
+        }
+        .bouncing {
+            animation: bounce 2s infinite ease-in-out;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .wiggle:hover {
+            animation: wiggle 0.4s ease infinite;
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-4deg); }
+            50% { transform: rotate(4deg); }
+        }
+        .cute-shadow {
+            box-shadow: 0 10px 30px rgba(255, 143, 171, 0.18), 0 4px 6px rgba(0, 0, 0, 0.04);
+        }
+        .cute-btn {
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .cute-btn:hover {
+            transform: scale(1.05) translateY(-2px);
+        }
+        .cute-btn:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-700 flex flex-col justify-between">
+
+    <div class="cloud-bg">
+        <div class="cloud text-4xl" style="top: 10%; width: 120px; height: 40px; animation-duration: 25s; animation-delay: 0s;">☁️</div>
+        <div class="cloud text-3xl" style="top: 35%; width: 90px; height: 30px; animation-duration: 35s; animation-delay: 5s;">☁️</div>
+        <div class="cloud text-5xl" style="top: 70%; width: 160px; height: 50px; animation-duration: 20s; animation-delay: 2s;">☁️</div>
+    </div>
+
+    <header class="bg-white/90 backdrop-blur-md border-b-4 border-pastelPink shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer wiggle" onclick="showSection('home')">
+                <div class="w-12 h-12 bg-pastelPink rounded-full flex items-center justify-center text-2xl shadow-inner border-2 border-white bouncing">
+                    🐰
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-cuteCoral tracking-wide">Math Magic!</h1>
+                    <p class="text-xs text-slate-400 font-semibold font-quicksand">Grade 1 Fun Learning ✨</p>
+                </div>
+            </div>
+
+            <!-- Currency & Sticker Room Quick Bar -->
+            <div class="flex items-center space-x-3">
+                <div onclick="openStickersRoom()" class="flex items-center space-x-2 bg-purple-100 px-3.5 py-2 rounded-full border-2 border-purple-200 cursor-pointer cute-btn">
+                    <span class="text-xl">🌟</span>
+                    <span class="font-bold text-purple-700 text-sm hidden sm:inline">Sticker Room</span>
+                </div>
+                <div class="flex items-center space-x-1.5 bg-amber-50 px-3 py-1.5 rounded-full border-2 border-amber-200" title="Star Coins">
+                    <span class="text-xl">⭐</span>
+                    <span id="star-count" class="font-bold text-amber-700 text-base">5</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-5xl w-full mx-auto p-4 md:p-6">
+
+        <!-- HOME SECTION -->
+        <section id="view-home" class="space-y-6">
+            <div class="bg-gradient-to-r from-pink-100 via-yellow-100 to-sky-100 rounded-[2.5rem] p-6 md:p-10 text-slate-700 cute-shadow relative overflow-hidden flex flex-col md:flex-row items-center justify-between border-4 border-white">
+                <div class="space-y-4 z-10 text-center md:text-left max-w-lg">
+                    <span class="bg-white/80 text-cuteCoral text-xs md:text-sm font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-sm inline-block">✨ Let's learn math together! ✨</span>
+                    <h2 class="text-3xl md:text-5xl font-bold leading-tight text-slate-800">Welcome to Magical Math Land!</h2>
+                    <p class="text-slate-600 text-base md:text-lg font-quicksand">Join cute animals to count colorful apples, solve addition puzzles, and collect wonderful stickers!</p>
+                    <div class="flex flex-wrap gap-3 justify-center md:justify-start pt-2">
+                        <button onclick="showSection('lessons')" class="bg-cuteCoral text-white font-bold px-8 py-3.5 rounded-2xl text-lg shadow-lg cute-btn border-b-4 border-rose-500 inline-flex items-center space-x-2">
+                            <span>Start Lessons</span>
+                            <span>🚀</span>
+                        </button>
+                        <button onclick="openStickersRoom()" class="bg-white text-purple-700 font-bold px-6 py-3.5 rounded-2xl text-lg shadow-md cute-btn border-2 border-purple-200 inline-flex items-center space-x-2">
+                            <span>Sticker Book</span>
+                            <span>📖</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Mascot Card -->
+                <div class="mt-6 md:mt-0 z-10 flex flex-col items-center bg-white/90 p-5 rounded-[2rem] border-4 border-pink-200 shadow-md">
+                    <div class="text-7xl md:text-8xl bouncing" id="home-mascot">🐱</div>
+                    <div class="bg-pink-50 border border-pink-200 px-4 py-2 rounded-xl mt-3 text-center">
+                        <p class="text-xs text-pink-600 font-bold">Mascot says:</p>
+                        <p id="mascot-speech" class="text-sm font-bold text-slate-800 font-quicksand">"Meow! You can do it!"</p>
+                    </div>
+                </div>
+                <div class="absolute -bottom-12 -right-12 w-56 h-56 bg-white/25 rounded-full pointer-events-none blur-sm"></div>
+            </div>
+
+            <!-- Activities Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 pt-2">
+                <div onclick="openLesson('counting')" class="bg-white/90 backdrop-blur p-6 rounded-[2rem] cute-shadow border-b-8 border-pink-200 flex flex-col items-center text-center cursor-pointer cute-btn group">
+                    <div class="text-5xl mb-3 bg-pink-50 w-20 h-20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition">🍎</div>
+                    <h3 class="text-xl font-bold text-slate-800">Count Apples</h3>
+                    <p class="text-xs text-slate-400 mt-1 font-quicksand">Tap delicious apples one by one!</p>
+                </div>
+                <div onclick="openLesson('addition')" class="bg-white/90 backdrop-blur p-6 rounded-[2rem] cute-shadow border-b-8 border-yellow-200 flex flex-col items-center text-center cursor-pointer cute-btn group">
+                    <div class="text-5xl mb-3 bg-yellow-50 w-20 h-20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition">🐶</div>
+                    <h3 class="text-xl font-bold text-slate-800">Cute Addition</h3>
+                    <p class="text-xs text-slate-400 mt-1 font-quicksand">Combine friendly animals!</p>
+                </div>
+                <div onclick="openLesson('subtraction')" class="bg-white/90 backdrop-blur p-6 rounded-[2rem] cute-shadow border-b-8 border-blue-200 flex flex-col items-center text-center cursor-pointer cute-btn group">
+                    <div class="text-5xl mb-3 bg-blue-50 w-20 h-20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition">🍪</div>
+                    <h3 class="text-xl font-bold text-slate-800">Yummy Subtraction</h3>
+                    <p class="text-xs text-slate-400 mt-1 font-quicksand">Eat snacks and count left overs!</p>
+                </div>
+                <div onclick="openLesson('shapes')" class="bg-white/90 backdrop-blur p-6 rounded-[2rem] cute-shadow border-b-8 border-purple-200 flex flex-col items-center text-center cursor-pointer cute-btn group">
+                    <div class="text-5xl mb-3 bg-purple-50 w-20 h-20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition">⭐</div>
+                    <h3 class="text-xl font-bold text-slate-800">Magical Shapes</h3>
+                    <p class="text-xs text-slate-400 mt-1 font-quicksand">Explore stars, circles & triangles!</p>
+                </div>
+                <div onclick="openStickersRoom()" class="bg-white/90 backdrop-blur p-6 rounded-[2rem] cute-shadow border-b-8 border-emerald-200 flex flex-col items-center text-center cursor-pointer cute-btn group">
+                    <div class="text-5xl mb-3 bg-emerald-50 w-20 h-20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition">🎨</div>
+                    <h3 class="text-xl font-bold text-slate-800">Sticker Room</h3>
+                    <p class="text-xs text-slate-400 mt-1 font-quicksand">View your unlocked animal stickers!</p>
+                </div>
+                <div onclick="startQuiz()" class="bg-gradient-to-br from-amber-400 to-yellow-500 p-6 rounded-[2rem] cute-shadow border-b-8 border-amber-600 flex flex-col items-center text-center cursor-pointer cute-btn text-white group">
+                    <div class="text-5xl mb-3 bg-white/20 w-20 h-20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition">🏆</div>
+                    <h3 class="text-xl font-bold">Math Quiz Challenge</h3>
+                    <p class="text-xs text-white/90 mt-1 font-quicksand">Win stars & new stickers!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LESSONS LIST -->
+        <section id="view-lessons" class="hidden space-y-6">
+            <div class="flex items-center justify-between">
+                <button onclick="showSection('home')" class="bg-white px-5 py-2.5 rounded-2xl shadow-sm border border-slate-200 font-bold text-slate-600 cute-btn flex items-center space-x-2">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Back Home</span>
+                </button>
+                <h2 class="text-2xl font-bold text-cuteCoral">Choose a Math Lesson</h2>
+                <div></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div onclick="openLesson('counting')" class="bg-white/90 p-5 rounded-[2rem] cute-shadow border-l-8 border-pink-400 flex items-center space-x-4 cursor-pointer cute-btn hover:bg-pink-50/50">
+                    <span class="text-5xl bg-pink-100 p-4 rounded-2xl">🍎</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800">1. Counting Apples</h3>
+                        <p class="text-sm text-slate-500 font-quicksand">Tap apples to count them one by one!</p>
+                    </div>
+                </div>
+                <div onclick="openLesson('addition')" class="bg-white/90 p-5 rounded-[2rem] cute-shadow border-l-8 border-yellow-400 flex items-center space-x-4 cursor-pointer cute-btn hover:bg-yellow-50/50">
+                    <span class="text-5xl bg-yellow-100 p-4 rounded-2xl">🐶</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800">2. Cute Addition</h3>
+                        <p class="text-sm text-slate-500 font-quicksand">Add cute animal companions together!</p>
+                    </div>
+                </div>
+                <div onclick="openLesson('subtraction')" class="bg-white/90 p-5 rounded-[2rem] cute-shadow border-l-8 border-blue-400 flex items-center space-x-4 cursor-pointer cute-btn hover:bg-blue-50/50">
+                    <span class="text-5xl bg-blue-100 p-4 rounded-2xl">🍪</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800">3. Yummy Subtraction</h3>
+                        <p class="text-sm text-slate-500 font-quicksand">Take away snacks and count what's left!</p>
+                    </div>
+                </div>
+                <div onclick="openLesson('shapes')" class="bg-white/90 backdrop-blur p-5 rounded-[2rem] cute-shadow border-l-8 border-purple-400 flex items-center space-x-4 cursor-pointer cute-btn hover:bg-purple-50/50">
+                    <span class="text-5xl bg-purple-100 p-4 rounded-2xl">⭐</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800">4. Magical Shapes</h3>
+                        <p class="text-sm text-slate-500 font-quicksand">Explore circles, squares, stars, and triangles!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LESSON DETAIL VIEW -->
+        <section id="view-lesson-detail" class="hidden space-y-6">
+            <div class="flex items-center justify-between">
+                <button onclick="showSection('lessons')" class="bg-white px-5 py-2.5 rounded-2xl shadow-sm border border-slate-200 font-bold text-slate-600 cute-btn flex items-center space-x-2">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Back to Lessons</span>
+                </button>
+                <h2 id="lesson-title" class="text-2xl font-bold text-cuteCoral">Lesson Activity</h2>
+                <div></div>
+            </div>
+
+            <div id="lesson-content-box" class="bg-white/95 backdrop-blur rounded-[2.5rem] cute-shadow p-6 md:p-10 text-center space-y-6 border-4 border-white">
+                <!-- Dynamically Injected -->
+            </div>
+        </section>
+
+        <!-- QUIZ SECTION -->
+        <section id="view-quiz" class="hidden space-y-6">
+            <div class="flex items-center justify-between">
+                <button onclick="showSection('home')" class="bg-white px-5 py-2.5 rounded-2xl shadow-sm border border-slate-200 font-bold text-slate-600 cute-btn flex items-center space-x-2">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Quit Quiz</span>
+                </button>
+                <div class="text-lg font-bold text-amber-600 font-quicksand" id="quiz-progress">Question 1 of 5</div>
+                <div></div>
+            </div>
+
+            <div class="bg-white/95 backdrop-blur rounded-[2.5rem] cute-shadow p-6 md:p-10 text-center space-y-6 max-w-2xl mx-auto border-4 border-yellow-200">
+                <div id="quiz-question-icon" class="text-7xl bouncing">⭐</div>
+                <h3 id="quiz-question-text" class="text-2xl md:text-3xl font-bold text-slate-800">Math Quiz Challenge!</h3>
+
+                <div id="quiz-options" class="grid grid-cols-2 gap-4 pt-4">
+                    <!-- Populated by JS -->
+                </div>
+
+                <div id="quiz-feedback" class="text-xl font-bold h-10 flex items-center justify-center font-quicksand"></div>
+            </div>
+        </section>
+
+        <!-- STICKER REWARD ROOM -->
+        <section id="view-stickers" class="hidden space-y-6">
+            <div class="flex items-center justify-between">
+                <button onclick="showSection('home')" class="bg-white px-5 py-2.5 rounded-2xl shadow-sm border border-slate-200 font-bold text-slate-600 cute-btn flex items-center space-x-2">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Back Home</span>
+                </button>
+                <h2 class="text-2xl font-bold text-purple-700">✨ Cute Sticker Collection ✨</h2>
+                <div></div>
+            </div>
+
+            <div class="bg-white/95 backdrop-blur rounded-[2.5rem] cute-shadow p-6 md:p-10 text-center space-y-6 max-w-3xl mx-auto border-4 border-purple-200">
+                <p class="text-slate-600 font-quicksand">Complete math lessons and quizzes to collect adorable animal and toy stickers!</p>
+                <div id="stickers-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- REWARD MODAL -->
+        <div id="modal-reward" class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+            <div class="bg-white rounded-[2.5rem] cute-shadow p-8 text-center max-w-md w-full space-y-4 bouncing border-4 border-pastelPink">
+                <div class="text-7xl" id="reward-emoji-icon">🎉</div>
+                <h3 class="text-3xl font-bold text-cuteCoral">Fantastic Job!</h3>
+                <p id="reward-text" class="text-slate-600 text-lg font-quicksand">You earned +5 Star Coins and a new Sticker!</p>
+                <div class="flex justify-center space-x-3 text-3xl py-2" id="reward-badges">
+                    ⭐ 🐰
+                </div>
+                <button onclick="closeRewardModal()" class="w-full bg-cuteCoral text-white font-bold py-3.5 rounded-2xl text-lg shadow-lg cute-btn border-b-4 border-rose-500">
+                    Keep Playing! ✨
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white/60 backdrop-blur border-t border-slate-200 py-4 text-center text-xs text-slate-400 font-quicksand">
+        <p>Made with ❤️ and magical math for Grade 1 Students ✨</p>
+    </footer>
+
+    <script>
+        // Web Audio API Synthesizer for cheerful sound effects
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playSound(type) {
+            try {
+                initAudio();
+                if (!audioCtx) return;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                const now = audioCtx.currentTime;
+
+                if (type === 'pop') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(350, now);
+                    osc.frequency.exponentialRampToValueAtTime(750, now + 0.12);
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
+                    osc.start(now);
+                    osc.stop(now + 0.12);
+                } else if (type === 'success') {
+                    // Cheerful Arpeggio
+                    [523.25, 659.25, 783.99, 1046.50].forEach((freq, index) => {
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.connect(g);
+                        g.connect(audioCtx.destination);
+                        o.frequency.setValueAtTime(freq, now + index * 0.07);
+                        g.gain.setValueAtTime(0.15, now + index * 0.07);
+                        g.gain.exponentialRampToValueAtTime(0.01, now + index * 0.07 + 0.2);
+                        o.start(now + index * 0.07);
+                        o.stop(now + index * 0.07 + 0.2);
+                    });
+                } else if (type === 'error') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.log("Audio waiting for user gesture.");
+            }
+        }
+
+        // Global State
+        let state = {
+            stars: 5,
+            stickersUnlocked: [true, true, false, false, false, false],
+            mascotQuotes: [
+                "Meow! You are doing amazing!",
+                "Math is fun and sparkly! ✨",
+                "Keep counting and learning!",
+                "You're a super star student! ⭐"
+            ]
+        };
+
+        const stickersCatalog = [
+            { id: 0, name: "Fluffy Bunny", icon: "🐰" },
+            { id: 1, name: "Sweet Kitty", icon: "🐱" },
+            { id: 2, name: "Happy Panda", icon: "🐼" },
+            { id: 3, name: "Magical Unicorn", icon: "🦄" },
+            { id: 4, name: "Rocket Ship", icon: "🚀" },
+            { id: 5, name: "Golden Star", icon: "⭐" }
+        ];
+
+        function updateUIState() {
+            document.getElementById('star-count').innerText = state.stars;
+            let randomQuote = state.mascotQuotes[Math.floor(Math.random() * state.mascotQuotes.length)];
+            document.getElementById('mascot-speech').innerText = `"${randomQuote}"`;
+        }
+
+        function showSection(sectionId) {
+            playSound('pop');
+            ['home', 'lessons', 'lesson-detail', 'quiz', 'stickers'].forEach(id => {
+                document.getElementById(`view-${id}`).classList.add('hidden');
+            });
+            document.getElementById(`view-${sectionId}`).classList.remove('hidden');
+            if (sectionId === 'stickers') {
+                renderStickersRoom();
+            } else {
+                updateUIState();
+            }
+        }
+
+        function openStickersRoom() {
+            showSection('stickers');
+        }
+
+        function renderStickersRoom() {
+            const grid = document.getElementById('stickers-grid');
+            grid.innerHTML = '';
+            stickersCatalog.forEach((stk, idx) => {
+                let unlocked = state.stickersUnlocked[idx];
+                grid.innerHTML += `
+                    <div class="bg-gradient-to-b ${unlocked ? 'from-purple-50 to-pink-50 border-purple-300' : 'from-slate-100 to-slate-200 border-slate-300 opacity-60'} p-5 rounded-[2rem] border-2 flex flex-col items-center text-center shadow-sm">
+                        <div class="text-6xl mb-2 ${unlocked ? 'bouncing' : ''}">${unlocked ? stk.icon : '🔒'}</div>
+                        <h4 class="font-bold text-slate-800 text-sm mt-1">${stk.name}</h4>
+                        <span class="text-xs ${unlocked ? 'text-purple-600 font-bold' : 'text-slate-400'} mt-1">${unlocked ? 'Unlocked ✨' : 'Locked'}</span>
+                    </div>
+                `;
+            });
+        }
+
+        function earnRewards(starsEarned, reason) {
+            state.stars += starsEarned;
+            // Unlock next sticker if available
+            let lockedIdx = state.stickersUnlocked.findIndex(v => !v);
+            if (lockedIdx !== -1) {
+                state.stickersUnlocked[lockedIdx] = true;
+            }
+            updateUIState();
+            showRewardModal(`${reason} Earned +${starsEarned} Stars and a new Sticker! 🎉`, '⭐✨');
+        }
+
+        function openLesson(key) {
+            playSound('pop');
+            showSection('lesson-detail');
+            const box = document.getElementById('lesson-content-box');
+            const titleEl = document.getElementById('lesson-title');
+
+            if (key === 'counting') {
+                titleEl.innerText = 'Counting Apples';
+                renderCountingLesson(box);
+            } else if (key === 'addition') {
+                titleEl.innerText = 'Cute Addition';
+                renderAdditionLesson(box);
+            } else if (key === 'subtraction') {
+                titleEl.innerText = 'Yummy Subtraction';
+                renderSubtractionLesson(box);
+            } else if (key === 'shapes') {
+                titleEl.innerText = 'Magical Shapes';
+                renderShapesLesson(box);
+            }
+        }
+
+        // 1. Counting Lesson
+        let countTarget = 5;
+        let countedCurrent = 0;
+        function renderCountingLesson(container) {
+            countTarget = Math.floor(Math.random() * 3) + 4; // 4 to 6
+            countedCurrent = 0;
+            let html = `
+                <p class="text-lg text-slate-600 font-quicksand">Tap each delicious red apple to count them!</p>
+                <div class="text-3xl font-bold text-cuteCoral my-2 font-fredoka">Count: <span id="counter-val" class="text-amber-600">0</span> / ${countTarget}</div>
+                <div class="flex flex-wrap justify-center gap-4 py-6">
+            `;
+            for (let i = 0; i < countTarget; i++) {
+                html += `<div onclick="tapCountItem(this)" class="w-20 h-20 bg-pink-50 rounded-2xl border-2 border-pink-300 flex items-center justify-center text-4xl cursor-pointer cute-btn select-none">🍎</div>`;
+            }
+            html += `</div>
+                <div id="counting-msg" class="text-xl font-bold text-emerald-600 min-h-[3rem] font-quicksand"></div>
+            `;
+            container.innerHTML = html;
+        }
+
+        function tapCountItem(el) {
+            if (el.classList.contains('opacity-40')) return;
+            el.classList.add('opacity-40', 'scale-90');
+            countedCurrent++;
+            playSound('pop');
+            document.getElementById('counter-val').innerText = countedCurrent;
+
+            if (countedCurrent === countTarget) {
+                playSound('success');
+                document.getElementById('counting-msg').innerText = '✨ Wonderful! You counted all apples!';
+                setTimeout(() => earnRewards(3, "Counting Mission Completed!"), 1200);
+            }
+        }
+
+        // 2. Addition Lesson
+        function renderAdditionLesson(container) {
+            let num1 = Math.floor(Math.random() * 3) + 1;
+            let num2 = Math.floor(Math.random() * 3) + 1;
+            let sum = num1 + num2;
+            let items1 = '🐶'.repeat(num1);
+            let items2 = '🐶'.repeat(num2);
+
+            container.innerHTML = `
+                <p class="text-lg text-slate-600 font-quicksand">Add the cute puppies together to find the total sum!</p>
+                <div class="flex items-center justify-center space-x-3 md:space-x-4 my-6 text-2xl md:text-4xl flex-wrap gap-y-3">
+                    <div class="bg-amber-50 p-4 rounded-2xl border-2 border-amber-200">${items1} <span class="text-base font-bold text-slate-500">(${num1})</span></div>
+                    <span class="font-bold text-cuteCoral">+</span>
+                    <div class="bg-amber-50 p-4 rounded-2xl border-2 border-amber-200">${items2} <span class="text-base font-bold text-slate-500">(${num2})</span></div>
+                    <span class="font-bold text-cuteCoral">=</span>
+                    <div class="bg-pink-50 px-6 py-4 rounded-2xl border-2 border-pink-300 font-bold text-pink-600">?</div>
+                </div>
+                <div class="flex justify-center gap-4 pt-4">
+                    ${generateOptions(sum, 4).map(opt => `
+                        <button onclick="checkAddition(${opt}, ${sum})" class="w-16 h-16 bg-pink-100 font-bold text-2xl rounded-2xl shadow border-b-4 border-pink-400 cute-btn">${opt}</button>
+                    `).join('')}
+                </div>
+                <div id="add-msg" class="text-xl font-bold min-h-[3rem] pt-4 font-quicksand"></div>
+            `;
+        }
+
+        function checkAddition(chosen, correct) {
+            const msg = document.getElementById('add-msg');
+            if (chosen === correct) {
+                playSound('success');
+                msg.className = 'text-xl font-bold text-emerald-600 font-quicksand';
+                msg.innerText = '🌟 Yay! ' + chosen + ' is correct!';
+                setTimeout(() => earnRewards(4, "Addition Mission Completed!"), 1200);
+            } else {
+                playSound('error');
+                msg.className = 'text-xl font-bold text-rose-500 font-quicksand';
+                msg.innerText = '❌ Try again! You can do it!';
+            }
+        }
+
+        // 3. Subtraction Lesson
+        let snackTotal = 5;
+        let snackLeft = 3;
+        function renderSubtractionLesson(container) {
+            snackTotal = 5;
+            snackLeft = 2;
+            let html = `
+                <p class="text-lg text-slate-600 font-quicksand">You have 5 cookies. Eat 2 cookies! How many are left?</p>
+                <div class="text-2xl font-bold text-cuteCoral my-4 font-fredoka">Cookies Left: <span id="cookie-count-val" class="text-amber-600">5</span></div>
+                <div class="flex flex-wrap justify-center gap-4 py-4">
+            `;
+            for (let i = 0; i < snackTotal; i++) {
+                html += `<div onclick="eatCookie(this)" class="w-20 h-20 bg-amber-100 rounded-full border-4 border-amber-300 flex items-center justify-center text-3xl cursor-pointer cute-btn shadow-inner select-none">🍪</div>`;
+            }
+            html += `</div>
+                <div id="sub-msg" class="text-xl font-bold min-h-[3rem] pt-2 font-quicksand"></div>
+            `;
+            container.innerHTML = html;
+        }
+
+        function eatCookie(el) {
+            if (el.classList.contains('opacity-30') || snackLeft <= 3) return;
+            el.classList.add('opacity-30', 'scale-75', 'line-through');
+            snackLeft--;
+            playSound('pop');
+            document.getElementById('cookie-count-val').innerText = snackLeft;
+
+            if (snackLeft === 3) {
+                playSound('success');
+                document.getElementById('sub-msg').innerText = '🎉 Delicious! 5 minus 2 leaves 3 cookies!';
+                setTimeout(() => earnRewards(3, "Subtraction Mission Completed!"), 1200);
+            }
+        }
+
+        // 4. Shapes Lesson
+        function renderShapesLesson(container) {
+            const shapesData = [
+                { name: 'Golden Star', icon: '⭐', desc: 'A shiny star with 5 pointy tips!' },
+                { name: 'Square Box', icon: '🟦', desc: '4 equal sides and square corners!' },
+                { name: 'Circle Cookie', icon: '🟡', desc: 'Round like a delicious cookie!' },
+                { name: 'Triangle Hat', icon: '🔺', desc: '3 straight sides like a party hat!' }
+            ];
+            let html = `<p class="text-lg text-slate-600 font-quicksand">Tap a shape to learn about it!</p><div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-4">`;
+            shapesData.forEach(s => {
+                html += `
+                    <div onclick="showShapeDetail('${s.name}', '${s.icon}', '${s.desc}')" class="bg-purple-50 p-6 rounded-[2rem] border-2 border-purple-200 cursor-pointer cute-btn hover:bg-purple-100 transition">
+                        <div class="text-6xl mb-2">${s.icon}</div>
+                        <h4 class="font-bold text-lg text-slate-700">${s.name}</h4>
+                    </div>
+                `;
+            });
+            html += `</div><div id="shape-info-box" class="bg-amber-50 p-4 rounded-2xl border border-amber-200 text-amber-800 font-bold text-lg font-quicksand">Tap any shape above!</div>`;
+            container.innerHTML = html;
+        }
+
+        function showShapeDetail(name, icon, desc) {
+            playSound('pop');
+            document.getElementById('shape-info-box').innerHTML = `${icon} <b>${name}:</b> ${desc}`;
+            setTimeout(() => earnRewards(2, "Shape Discovery!"), 1500);
+        }
+
+        function generateOptions(correctVal, count) {
+            let opts = [correctVal];
+            while (opts.length < count) {
+                let rand = correctVal + Math.floor(Math.random() * 4) - 2;
+                if (rand >= 0 && !opts.includes(rand)) {
+                    opts.push(rand);
+                }
+            }
+            return opts.sort(() => Math.random() - 0.5);
+        }
+
+        // Quiz State
+        let quizQuestions = [];
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+
+        function startQuiz() {
+            playSound('success');
+            showSection('quiz');
+            currentQuizIndex = 0;
+            quizScore = 0;
+            quizQuestions = [
+                { q: 'How many apples in 2 + 2?', icon: '🍎', answer: 4, options: [3, 4, 5, 6] },
+                { q: 'What shape is a Star?', icon: '⭐', answer: 'Star', options: ['Circle', 'Star', 'Square', 'Triangle'] },
+                { q: 'What is 5 - 2?', icon: '🍪', answer: 3, options: [2, 3, 4, 5] },
+                { q: 'How many puppies in 1 + 2?', icon: '🐶', answer: 3, options: [2, 3, 4, 5] },
+                { q: 'What is 3 + 2?', icon: '✨', answer: 5, options: [4, 5, 6, 7] }
+            ];
+            loadQuizQuestion();
+        }
+
+        function loadQuizQuestion() {
+            if (currentQuizIndex >= quizQuestions.length) {
+                playSound('success');
+                earnRewards(5, `Quiz Completed! Score: ${quizScore}/5`);
+                showSection('home');
+                return;
+            }
+
+            const item = quizQuestions[currentQuizIndex];
+            document.getElementById('quiz-progress').innerText = `Question ${currentQuizIndex + 1} of 5`;
+            document.getElementById('quiz-question-icon').innerText = item.icon;
+            document.getElementById('quiz-question-text').innerText = item.q;
+            document.getElementById('quiz-feedback').innerText = '';
+
+            const optionsBox = document.getElementById('quiz-options');
+            optionsBox.innerHTML = item.options.map(opt => `
+                <button onclick="answerQuiz('${opt}')" class="bg-yellow-100 text-slate-800 font-bold text-xl py-4 rounded-2xl cute-shadow border-b-4 border-amber-300 cute-btn">${opt}</button>
+            `).join('');
+        }
+
+        function answerQuiz(selected) {
+            const item = quizQuestions[currentQuizIndex];
+            const feedback = document.getElementById('quiz-feedback');
+            let isCorrect = String(selected) === String(item.answer);
+
+            if (isCorrect) {
+                playSound('success');
+                quizScore++;
+                feedback.className = 'text-xl font-bold text-emerald-600 font-quicksand';
+                feedback.innerText = '🌟 Correct! Great job!';
+            } else {
+                playSound('error');
+                feedback.className = 'text-xl font-bold text-rose-500 font-quicksand';
+                feedback.innerText = '❌ Good try! The answer was ' + item.answer;
+            }
+
+            currentQuizIndex++;
+            setTimeout(loadQuizQuestion, 1400);
+        }
+
+        function showRewardModal(text, emoji) {
+            document.getElementById('reward-text').innerText = text;
+            document.getElementById('reward-emoji-icon').innerText = emoji;
+            document.getElementById('modal-reward').classList.remove('hidden');
+            document.getElementById('modal-reward').classList.add('flex');
+        }
+
+        function closeRewardModal() {
+            playSound('pop');
+            document.getElementById('modal-reward').classList.remove('flex');
+            document.getElementById('modal-reward').classList.add('hidden');
+        }
+
+        window.onload = function() {
+            updateUIState();
+        };
+    </script>
+</body>
+</html>
